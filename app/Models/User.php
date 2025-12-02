@@ -1,30 +1,38 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-
-use App\Models\Task;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $fillable = ['name','email','password'];
-    protected $hidden = ['password','remember_token'];
-    protected $casts = ['email_verified_at' => 'datetime'];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'role', // add role
+    ];
 
-    /**
-     * Get the tasks for the user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function tasks(): HasMany
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    public function tasks()
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(\App\Models\Task::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
     }
 }

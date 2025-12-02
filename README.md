@@ -58,6 +58,9 @@ php artisan migrate
 # seed sample tasks
 php artisan db:seed --class=SampleTasksSeeder
 
+#seed admin user, default: admin@gmail.com|Admin
+php artisan db:seed --class=AdminUserSeeder
+
 # serve app
 php artisan serve
 

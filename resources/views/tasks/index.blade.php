@@ -48,6 +48,9 @@
         <thead class="table-light">
           <tr>
             <th>Title</th>
+            @if(auth()->user()->isAdmin())
+                <th>Role</th>
+            @endif
             <th style="width:170px">Status</th>
             <th style="width:140px">Due</th>
             <th style="width:150px" class="text-end">Actions</th>
@@ -60,7 +63,9 @@
               <div class="fw-semibold">{{ $task->title }}</div>
               <div class="text-muted small">{{ \Illuminate\Support\Str::limit($task->description, 80) }}</div>
             </td>
-
+            @if(auth()->user()->isAdmin())
+                <td>Admin</td>
+            @endif
             <td class="align-middle">
               @if($task->status === 'done')
                 <span class="badge bg-success">Done</span>

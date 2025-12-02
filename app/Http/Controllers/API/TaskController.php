@@ -24,7 +24,7 @@ class TaskController extends Controller
         $due = $request->query('due_date');
         $q = $request->query('q');
 
-        $query = $user->tasks();
+        $query = $user->isAdmin() ? Task::with('user') : $user->tasks();
 
         if ($status) $query->where('status', $status);
         if ($due) $query->whereDate('due_date', $due);
