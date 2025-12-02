@@ -91,6 +91,9 @@ class TaskController extends Controller
         if (! ($task->user_id === $user->id)) return $this->error('Forbidden', 403);
 
         $task->delete();
-        return $this->success(null, 'Task deleted', 204);
+        return $this->success([
+            'id' => $task->id,
+            'title' => $task->title
+        ], 'Task deleted successfully', 200);
     }
 }
