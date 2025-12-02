@@ -62,7 +62,7 @@ php artisan db:seed --class=SampleTasksSeeder
 php artisan db:seed --class=AdminUserSeeder
 
 # serve app
-php artisan serve
+php artisan serve --host=127.0.0.1 --port=8000
 
 # start queue worker (another terminal)
 php artisan queue:work
