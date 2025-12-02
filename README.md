@@ -48,7 +48,7 @@ php artisan key:generate
 npm install
 npm run dev
 
-# create DB then run migrations
+# create DB then run migrations, db name should be 'task_manager'
 php artisan migrate
 
 # create queue table
